@@ -1,0 +1,57 @@
+spring:
+
+
+  datasource:
+    password: passwrd
+    url: jdbc:mysql://localhost:3306/entrega?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+
+  
+  activemq:
+      broker-url: vm://embedded?broker.persistent=false,useShutdownHook=false
+      in-memory: true
+      non-blocking-redelivery: true
+      packages:
+        trust-all: false
+        trusted: com.memorynotfound
+      pool:
+        block-if-full: true
+        block-if-full-timeout: -1
+       
+        enabled: false
+        
+        idle-timeout: 30000
+        max-connections: 1
+        max-sessions-per-connection: 500
+   
+        time-between-expiration-check: -1
+        use-anonymous-producers: true
+
+  # Spring JMS Settings
+  jms:
+    listener:
+      acknowledge-mode: auto
+      auto-startup: true
+      concurrency: 1
+      max-concurrency: 1
+    pub-sub-domain: true
+    template:
+      default-destination:
+      delivery-mode: non-persistent
+      priority: 100
+      qos-enabled: true
+      receive-timeout: 1000
+      
+
+
+logging:
+  pattern:
+    console: "[%thread]:%msg%n"
+ 
